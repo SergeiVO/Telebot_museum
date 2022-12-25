@@ -4,7 +4,7 @@ from telebot import types
 from config import TOKEN_API
 
 bot = telebot.TeleBot(TOKEN_API)
-
+# Comment just for test
 
 @bot.message_handler(commands=['start'])
 def start(message):
