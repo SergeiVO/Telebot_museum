@@ -1,21 +1,20 @@
+import telebot
 import peewee
+import datetime
+import datetime
+from config import TOKEN_API
+import logging
 
-sqlite_db = peewee.SqliteDatabase('app1.db', pragmas={
-    'journal_mode': 'wal',
-    'cache_size': -1024 * 64
-})
+connect = peewee.SqliteDatabase("telek.db")
 
 
-class BaseModel(peewee.Model):
+class User(peewee.Model):
+    id = peewee.PrimaryKeyField(unique=True)
+    user_id = peewee.IntegerField()
+    name = peewee.CharField()
+
     class Meta:
-        database = sqlite_db
+        database = connect
 
 
-class User(BaseModel):
-    external_id = peewee.BigIntegerField(unique=True)
-    chat_id = peewee.BigIntegerField(unique=True)
-
-
-
-if __name__ == '__main__':
-    sqlite_db.create_tables([User])
+connect.create_tables([User])

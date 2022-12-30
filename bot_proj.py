@@ -1,7 +1,10 @@
+import datetime
+
 import telebot
 import peewee
 from telebot import types
 from config import TOKEN_API
+from modul import User
 
 bot = telebot.TeleBot(TOKEN_API)
 # Comment just for test
@@ -15,9 +18,9 @@ def start(message):
    # item4 = types.KeyboardButton('Other')
 
     markup.add(rusbtn, engbtn)
-
-    bot.send_message(message.chat.id, ' Welcome to museum`s bot \n Добро пожаловать в бот музея, {0.first_name}!'.format(message.from_user), reply_markup=markup)
-
+    bot.send_message(message.chat.id, ' Welcome to museum`s bot \n Добро пожаловать в бот музея, {0.first_name}! \n Выберите язык \ Select language'.format(message.from_user), reply_markup=markup)
+    users_id = [message.chat.id]
+    User.create(user_id=message.from_user.id, name=message.from_user.first_name, date=message.date)
 
 @bot.message_handler(content_types=['text'])
 def bot_message(message):
@@ -37,6 +40,14 @@ def bot_message(message):
             markup.add(item1, item2, back)
 
             bot.send_message(message.chat.id, 'English', reply_markup=markup)
+
+        # if message.text == 'Русский':
+        #     lan = 'Русский'
+        # elif message.text == 'English':
+        #     lan = 'English'
+        #
+        #     users_id = [message.chat.id]
+        #     User.create(user_id=message.from_user.id, name=message.from_user.first_name)
 
         elif message.text == 'Work':
             bot.send_message(chat_id=message.chat.id, text='https://victorymuseum.ru/for-visitors/museum-for-china/en/')
