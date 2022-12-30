@@ -4,7 +4,7 @@ import telebot
 import peewee
 from telebot import types
 from config import TOKEN_API
-from modul import User
+from modal import User
 
 bot = telebot.TeleBot(TOKEN_API)
 # Comment just for test
