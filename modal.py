@@ -5,7 +5,7 @@ import datetime
 from config import TOKEN_API
 import logging
 
-connect = peewee.SqliteDatabase("telemuseum.db")
+connect = peewee.SqliteDatabase("telemus.db")
 
 
 class User(peewee.Model):
