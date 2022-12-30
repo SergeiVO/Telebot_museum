@@ -7,15 +7,12 @@ from config import TOKEN_API
 from modal import User
 
 bot = telebot.TeleBot(TOKEN_API)
-# Comment just for test
 
 @bot.message_handler(commands=['start'])
 def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     rusbtn = types.KeyboardButton('Русский')
     engbtn = types.KeyboardButton('English')
-   # item3 = types.KeyboardButton('Information')
-   # item4 = types.KeyboardButton('Other')
 
     markup.add(rusbtn, engbtn)
     bot.send_message(message.chat.id, ' Welcome to museum`s bot \n Добро пожаловать в бот музея, {0.first_name}! \n Выберите язык \ Select language'.format(message.from_user), reply_markup=markup)

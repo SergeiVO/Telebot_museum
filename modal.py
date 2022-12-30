@@ -18,3 +18,4 @@ class User(peewee.Model):
 
 
 connect.create_tables([User])
+
